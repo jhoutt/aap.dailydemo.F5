@@ -94,6 +94,7 @@
         enabled: true
         variables:
           ansible_host: "{{ item['public_ip_address'] }}"
+          public_dns_name: "{{ item['public_dns_name'] }}"
 
     - name: Create the ml_demo group of webservers
       loop: "{{ web_instance_info['instances'] }}"
