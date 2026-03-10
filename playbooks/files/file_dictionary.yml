@@ -10,7 +10,7 @@ files:
     selevel: s0
     attributes: +i
   - name: sshd-banner
-    directory: /etc/ssh
+    directory: /etc/ssh/
     mode: '0644'
     group: root
     owner: root
