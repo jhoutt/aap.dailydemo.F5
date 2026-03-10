@@ -9,7 +9,7 @@
 
   tasks:
 
-    - name: Upgrade all packages except sudo.x86_64
+    - name: Upgrade all packages
       ansible.builtin.dnf:
         name: "*"
         state: latest
