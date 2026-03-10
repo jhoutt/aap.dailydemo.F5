@@ -14,3 +14,5 @@ collections:
     version: 2.10.0
   - name: infra.aap_configuration
     version: 3.8.0
+  - name: redhat.rhel_system_roles
+    version: 1.108.6
