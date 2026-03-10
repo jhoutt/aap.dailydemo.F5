@@ -16,14 +16,14 @@
 
     - name: Print raw JSON response
       ansible.builtin.debug:
-        var: health_response  # Access parsed JSON via .json attribute
+        var: health_response.results  # Access parsed JSON via .json attribute
 
     - name: Check if system is UP
       ansible.builtin.debug:
-        msg: "✅ System is UP (Last checked: {{ health_response.json.timestamp }})"
-      when: health_response.json.status == "UP"  # Conditional check
+        msg: "✅ System is UP (Last checked: {{ health_response.results.date }})"
+      when: health_response.results.status == "200"  # Conditional check
 
     - name: Fail if system is DOWN
       ansible.builtin.fail:
-        msg: "❌ System is DOWN (Last checked: {{ health_response.json.timestamp }})"
-      when: health_response.json.status == "DOWN"  # Conditional check
+        msg: "❌ System is DOWN (Last checked: {{ health_response.results.date }})"
+      when: health_response.results.status != "200"  # Conditional check
