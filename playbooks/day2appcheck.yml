@@ -17,7 +17,6 @@
     - name: Print raw response
       ansible.builtin.debug:
         var: health_response.results  # Access parsed JSON via .json attribute
-        verbosity: 1
 
     - name: Check if system is UP
       when: health_response[ 'results' ][ 'status'] == "200"  # Conditional check
