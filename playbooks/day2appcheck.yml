@@ -13,3 +13,18 @@
         method: GET
         return_content: yes  # Capture response body
         status_code: 200  # Expect 200 OK (adjust if your endpoint uses 201, 204, etc.)
+
+    - name: Print raw JSON response
+      ansible.builtin.debug:
+        var: health_response.json  # Access parsed JSON via .json attribute
+        verbosity: 1  # Show only when running with -v (optional)
+
+    - name: Check if system is UP
+      ansible.builtin.debug:
+        msg: "✅ System is UP (Last checked: {{ health_response.json.timestamp }})"
+      when: health_response.json.status == "UP"  # Conditional check
+
+    - name: Fail if system is DOWN
+      ansible.builtin.fail:
+        msg: "❌ System is DOWN (Last checked: {{ health_response.json.timestamp }})"
+      when: health_response.json.status == "DOWN"  # Conditional check
