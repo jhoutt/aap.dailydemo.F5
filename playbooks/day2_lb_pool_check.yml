@@ -8,8 +8,8 @@
   - name: Determine that a network credential exists
     ansible.builtin.assert:
       that:
-        - "lookup('ansible.builtin.env', 'provider.username') !=''"
-        - "lookup('ansible.builtin.env', 'provider.password') !=''"
+        - "lookup('ansible.builtin.env', 'username') !=''"
+        - "lookup('ansible.builtin.env', 'password') !=''"
       fail_msg:
         - "A Network credential is not set"
         - "Please assign correct credentials to the Job Template"
