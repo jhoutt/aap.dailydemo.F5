@@ -17,11 +17,20 @@
         #f5_mgmt_ip: "{{ f5_mgmt_ip|default([]) + [ hostvars[item]['F5_mgmt_ip'] ] }}"
 
     - name: Setup F5 provider
-      set_fact:
+      ansible.builtin.set_fact:
         provider:
           server: "{{ F5_mgmt_ip }}"
           server_port: "8443"
           validate_certs: "no"
+
+    - name: Disable pool member
+      delegate_to: localhost
+      f5networks.f5_modules.bigip_pool_member:
+        provider: "{{provider}}"
+        state: "forced_offline"
+        name: "{{ inventory_hostname }}"
+        pool: "http_pool"
+        port: 80
 
     - name: Ensure httpd service is stopped and disabled
       ansible.builtin.service:
@@ -70,3 +79,12 @@
         method: GET
         return_content: yes  # Capture response body
         status_code: 200  # Expect 200 OK (adjust if your endpoint uses 201, 204, etc.)
+
+    - name: Enable pool member
+      delegate_to: localhost
+      f5networks.f5_modules.bigip_pool_member:
+        provider: "{{provider}}"
+        state: "present"
+        name: "{{ inventory_hostname }}"
+        pool: "http_pool"
+        port: 80
