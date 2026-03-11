@@ -56,3 +56,4 @@
       msg:
         - "Pool http_pool status:"
         - "Acitve Member Count: {{ target_pool['active_member_count'] }}, Available Member Count: {{ target_pool['available_member_count'] }}"
+        - "Availability Status: {{ target_pool['availability_status'] }}, Enabled Status: {{ target_pool['enabled_status'] }}"
