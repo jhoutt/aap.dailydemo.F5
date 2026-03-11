@@ -14,7 +14,6 @@
       ansible.builtin.set_fact:
         f5: "{{ item }}"
         F5_mgmt_ip: "{{ [ hostvars[item]['F5_mgmt_ip'] ] }}"
-        #f5_mgmt_ip: "{{ f5_mgmt_ip|default([]) + [ hostvars[item]['F5_mgmt_ip'] ] }}"
 
     - name: Setup F5 provider
       ansible.builtin.set_fact:
