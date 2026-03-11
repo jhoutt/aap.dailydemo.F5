@@ -8,20 +8,29 @@
 
   tasks:
 
+    - name: Determine that a network credential exists
+      ansible.builtin.assert:
+        that:
+          - "lookup('ansible.builtin.env', 'username') !=''"
+          - "lookup('ansible.builtin.env', 'password') !=''"
+        fail_msg:
+          - "A Network credential is not set"
+          - "Please assign correct credentials to the Job Template"
+
     - name: Get the F5
       loop: "{{ groups['f5demo'] }}"
       ansible.builtin.set_fact:
         f5: "{{ item }}"
         F5_mgmt_ip: "{{ [ hostvars[item]['F5_mgmt_ip'] ] }}"
 
-    - name: Setup F5 provider
+    - name: Setup provider
       ansible.builtin.set_fact:
         provider:
-          server: "https://{{ F5_mgmt_ip }}"
+          server: "{{ F5_mgmt_ip }}"
           server_port: "8443"
           validate_certs: "no"
-          user: "{{ lookup('ansible.builtin.env', 'Username') }}"
-          password: "{{ lookup('ansible.builtin.env', 'Password') }}"
+          user: "{{ lookup('ansible.builtin.env', 'username') }}"
+          password: "{{ lookup('ansible.builtin.env', 'password') }}"
 
     - name: Disable pool member
       delegate_to: localhost
