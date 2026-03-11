@@ -29,7 +29,9 @@
 
     - name: Printout my token
       ansible.builtin.debug:
-        msg: "{{ ansible_facts['aap_token']['token'] }}"
+        msg:
+          - "{{ ansible_facts['aap_token']['token'] }}"
+          - "{{ aap_username }}"
 
     - name: Export all assets
       register: controller_config
