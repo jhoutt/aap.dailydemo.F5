@@ -28,6 +28,7 @@
         msg:
           - "Ansible Host: {{ ansible_host }}"
           - "F5 Management IP: {{ F5_mgmt_ip }}"
+          - "F5 Public DNS Name: {{ f5 }}"
 
     - name: Setup provider
       ansible.builtin.set_fact:
