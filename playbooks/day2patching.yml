@@ -34,14 +34,13 @@
 
     - name: Disable pool member
       delegate_to: localhost
-      connection: local
       f5networks.f5_modules.bigip_pool_member:
         provider: "{{provider}}"
         state: "forced_offline"
         name: "{{ inventory_hostname }}"
         pool: "http_pool"
         port: 80
-        host: "{{ ansible_host }}"
+        fqdn: "{{ inventory_hostname }}"
 
     - name: Ensure httpd service is stopped and disabled
       ansible.builtin.service:
@@ -93,11 +92,10 @@
 
     - name: Enable pool member
       delegate_to: localhost
-      connection: local
       f5networks.f5_modules.bigip_pool_member:
         provider: "{{provider}}"
         state: "present"
         name: "{{ inventory_hostname }}"
         pool: "http_pool"
         port: 80
-        host: "{{ ansible_host }}"
+        fqdn: "{{ inventory_hostname }}"
