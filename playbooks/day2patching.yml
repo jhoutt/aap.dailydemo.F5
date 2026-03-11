@@ -30,7 +30,7 @@
     - name: Setup provider
       ansible.builtin.set_fact:
         provider:
-          server: "https://{{ F5_mgmt_ip }}:8443"
+          server: "{{ F5_mgmt_ip }}"
           server_port: "8443"
           validate_certs: "no"
           user: "{{ lookup('ansible.builtin.env', 'username') }}"
@@ -44,7 +44,6 @@
         name: "{{ inventory_hostname }}"
         pool: "http_pool"
         port: 80
-        fqdn: "{{ inventory_hostname }}"
 
     - name: Ensure httpd service is stopped and disabled
       ansible.builtin.service:
@@ -102,4 +101,3 @@
         name: "{{ inventory_hostname }}"
         pool: "http_pool"
         port: 80
-        fqdn: "{{ inventory_hostname }}"
