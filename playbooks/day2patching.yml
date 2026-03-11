@@ -30,7 +30,7 @@
     - name: Setup provider
       ansible.builtin.set_fact:
         provider:
-          server: "{{ F5_mgmt_ip }}"
+          server: "https://{{ F5_mgmt_ip }}:8443"
           server_port: "8443"
           validate_certs: "no"
           user: "{{ lookup('ansible.builtin.env', 'username') }}"
