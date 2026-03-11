@@ -38,10 +38,10 @@
       target_pool: "{{ item }}"
 
   - name: Display current status of pool members
-    loop: "{{ target_pool['members'] }}"
+    loop: "{{ target_pool['ansible_facts']['target_pool']['members'] }}"
     when: target_pool is defined
     ansible.builtin.debug:
       msg:
-        - "Pool '{{ http_pool }}':"
+        - "Pool http_pool:"
         - "Pool member status:"
         - "Member: {{ item['name'] }}, State: {{ item['real_state'] }}"
