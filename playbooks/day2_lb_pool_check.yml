@@ -8,8 +8,8 @@
   - name: Determine that a network credential exists
     ansible.builtin.assert:
       that:
-        - "lookup('ansible.builtin.env', 'Username') !=''"
-        - "lookup('ansible.builtin.env', 'Password') !=''"
+        - "lookup('ansible.builtin.env', 'username') !=''"
+        - "lookup('ansible.builtin.env', 'password') !=''"
       fail_msg:
         - "A Network credential is not set"
         - "Please assign correct credentials to the Job Template"
@@ -20,8 +20,8 @@
         server: "{{ F5_mgmt_ip }}"
         server_port: "8443"
         validate_certs: "no"
-        user: "{{ lookup('ansible.builtin.env', 'Username') }}"
-        password: "{{ lookup('ansible.builtin.env', 'Password') }}"
+        user: "{{ lookup('ansible.builtin.env', 'username') }}"
+        password: "{{ lookup('ansible.builtin.env', 'password') }}"
 
   - name: Collect pool facts
     delegate_to: localhost
