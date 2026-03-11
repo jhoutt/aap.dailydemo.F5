@@ -6,9 +6,6 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
 
-  collections:
-    - f5networks.f5_modules
-
   tasks:
 
     - name: Get the F5
@@ -28,6 +25,7 @@
 
     - name: Disable pool member
       delegate_to: localhost
+      connection: local
       f5networks.f5_modules.bigip_pool_member:
         provider: "{{provider}}"
         state: "forced_offline"
@@ -86,6 +84,7 @@
 
     - name: Enable pool member
       delegate_to: localhost
+      connection: local
       f5networks.f5_modules.bigip_pool_member:
         provider: "{{provider}}"
         state: "present"
