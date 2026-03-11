@@ -37,6 +37,10 @@
     ansible.builtin.set_fact:
       target_pool: "{{ item }}"
 
+  - name: Show me the pool
+    ansible.builtin.debug:
+      var: target_pool
+
   - name: Display current status of pool members
     loop: "{{ target_pool['ansible_facts']['target_pool']['members'] }}"
     when: target_pool is defined
