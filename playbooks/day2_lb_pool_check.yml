@@ -42,7 +42,7 @@
       var: target_pool
 
   - name: Display current status of pool members
-    loop: "{{ target_pool['target_pool']['members'] }}"
+    loop: "{{ target_pool['members'] }}"
     when: target_pool is defined
     ansible.builtin.debug:
       msg:
