@@ -25,7 +25,7 @@
 
     - name: Print out F5_mgmt_ip
       ansible.builtin.debug:
-        var: F5_mgmt_ip
+        var: ansible_host
 
     - name: Setup provider
       ansible.builtin.set_fact:
