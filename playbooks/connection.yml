@@ -15,6 +15,11 @@
     - name: Ping the linux host
       ansible.builtin.ping:
 
+    - name: Install traceroute
+      ansible.builtin.dnf:
+        name: traceroute
+        state: present
+
     - name: Execute traceroute command
       register: traceroute_output
       changed_when: false
