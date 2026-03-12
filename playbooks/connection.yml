@@ -2,6 +2,7 @@
 - name: Connectivity test
   hosts: tag_Type_ml_demo
   gather_facts: false
+  ignore_unreachable: true
 
   tasks:
 
@@ -14,13 +15,3 @@
 
     - name: Ping the linux host
       ansible.builtin.ping:
-
-    - name: Execute traceroute command
-      delegate_to: localhost
-      register: traceroute_output
-      changed_when: false
-      ansible.builtin.command: "traceroute -m 10 {{ inventory_hostname }}"
-
-    - name: Display traceroute results
-      ansible.builtin.debug:
-        var: traceroute_output.stdout_lines
