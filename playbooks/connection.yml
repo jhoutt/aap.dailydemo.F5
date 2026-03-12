@@ -16,6 +16,7 @@
       ansible.builtin.ping:
 
     - name: Install traceroute
+      become: true
       ansible.builtin.dnf:
         name: traceroute
         state: present
