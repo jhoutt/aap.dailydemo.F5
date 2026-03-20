@@ -1,0 +1,23 @@
+---
+- name: Check our webservice
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+
+    - name: Fetch health check from our webservers
+      loop: "{{ groups['tag_Type_ml_demo'] }}"
+      ansible.builtin.uri:
+        url: "http://{{ item }}"  # Replace with your endpoint
+        method: GET
+        return_content: yes  # Capture response body
+        status_code: 200  # Expect 200 OK (adjust if your endpoint uses 201, 204, etc.)
+
+    - name: Fetch health check from our loadbalancer
+      loop: "{{ groups['f5demo'] }}"
+      ansible.builtin.uri:
+        url: "https://{{ item }}:443"  # Replace with your endpoint
+        method: GET
+        return_content: yes  # Capture response body
+        status_code: 200  # Expect 200 OK (adjust if your endpoint uses 201, 204, etc.)
+        validate_certs: false

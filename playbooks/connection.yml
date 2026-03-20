@@ -1,0 +1,17 @@
+---
+- name: Connectivity test
+  hosts: tag_Type_ml_demo
+  gather_facts: false
+  ignore_unreachable: true
+
+  tasks:
+
+    - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
+      ansible.builtin.wait_for:
+        port: 22
+        host: "{{ inventory_hostname }}"
+        search_regex: OpenSSH
+        delay: 10
+
+    - name: Ping the linux host
+      ansible.builtin.ping:
