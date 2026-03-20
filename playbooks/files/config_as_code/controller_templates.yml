@@ -208,3 +208,54 @@ controller_templates:
     playbook: playbooks/website_setup.yml
     credentials:
       - "{{ my_aws_machine_credential }}"
+
+  - name: "Day 2 - connection test"
+    job_type: run
+    inventory: AAP Managed Inventory
+    organization: "{{ my_organization }}"
+    execution_environment: Default execution environment
+    project: aap.dailydemo.F5
+    playbook: playbooks/connection.yml
+    credentials:
+      - "{{ my_aws_machine_credential }}"
+
+  - name: "Day 2 - lb pool check"
+    job_type: run
+    inventory: AAP Managed Inventory
+    organization: "{{ my_organization }}"
+    execution_environment: F5_ee
+    project: aap.dailydemo.F5
+    playbook: playbooks/day2_lb_pool_check.yml
+    credentials:
+      - Network F5
+
+  - name: "Day 2 - Linux File Checker"
+    job_type: run
+    inventory: AAP Managed Inventory
+    organization: "{{ my_organization }}"
+    execution_environment: Default execution environment
+    project: aap.dailydemo.F5
+    playbook: playbooks/day2filecheck.yml
+    credentials:
+      - "{{ my_aws_machine_credential }}"
+
+  - name: "Day 2 - Linux Patching"
+    job_type: run
+    inventory: AAP Managed Inventory
+    organization: "{{ my_organization }}"
+    execution_environment: F5_ee
+    project: aap.dailydemo.F5
+    playbook: playbooks/day2patching.yml
+    credentials:
+      - Network F5
+      - "{{ my_aws_machine_credential }}"
+
+  - name: "Day 2 - Webservice check"
+    job_type: run
+    inventory: AAP Managed Inventory
+    organization: "{{ my_organization }}"
+    execution_environment: Default execution environment
+    project: aap.dailydemo.F5
+    playbook: playbooks/day2appcheck.yml
+    credentials:
+      - "{{ my_aws_machine_credential }}"
