@@ -1,6 +1,6 @@
 ---
 controller_workflows:
-  - name: "Run Linux Patching Workflow"
+-   name: "Run Linux Patching Workflow"
     organization: "IT Service Automation"
     simplified_workflow_nodes:
       - identifier: "Pre File Check"
