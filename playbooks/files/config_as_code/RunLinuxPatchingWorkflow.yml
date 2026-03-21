@@ -3,17 +3,6 @@ controller_workflows:
   - name: Run Linux Patching Workflow
     organization: IT Service Automation
     simplified_workflow_nodes:
-      - identifier: Do you approve
-        workflow_job_template: Run Linux Patching Workflow
-        approval_node:
-          description: ""
-          name: approval
-          timeout: 0
-        limit: ""
-        organization: IT Service Automation
-        all_parents_must_converge: "False"
-        success_nodes:
-          - Patching
       - identifier: Pre File Check
         workflow_job_template: Run Linux Patching Workflow
         unified_job_template: Day 2 - Linux File Checker
@@ -38,6 +27,17 @@ controller_workflows:
         all_parents_must_converge: "False"
         success_nodes:
           - Do you approve
+      - identifier: Do you approve
+        workflow_job_template: Run Linux Patching Workflow
+        approval_node:
+          description: ""
+          name: approval
+          timeout: 0
+        limit: ""
+        organization: IT Service Automation
+        all_parents_must_converge: "False"
+        success_nodes:
+          - Patching
       - identifier: Patching
         workflow_job_template: Run Linux Patching Workflow
         unified_job_template: Day 2 - Linux Patching
