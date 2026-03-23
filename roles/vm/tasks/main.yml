@@ -151,7 +151,7 @@
     
     - name: Wait for F5 to initialize
       ansible.builtin.pause:
-        seconds: 120 
+        seconds: 300 
 
     - name: Set the initial admin password
       ansible.builtin.expect:
