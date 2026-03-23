@@ -148,6 +148,10 @@
         public_dns_name: "{{ item['public_dns_name'] }}"
         public_ip_address: "{{ item['public_ip_address'] }}"
         private_ip_address: "{{ item['private_ip_address'] }}"
+    
+    - name: Wait for F5 to initialize
+      ansible.builtin.pause:
+        seconds: 120 
 
     - name: Set the initial admin password
       ansible.builtin.expect:
